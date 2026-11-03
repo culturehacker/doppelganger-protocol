@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+# Crawlers must be able to access the HTML to read its noindex directive.
