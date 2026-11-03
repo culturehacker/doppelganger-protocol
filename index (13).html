@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta charset="utf-8">
+<meta name="description" content="Doppelgänger Protocol — a project dossier by artist Lance Weiler. An immersive surveillance-based portrait series exploring consent, synthetic identity, and machine perception.">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Doppelgänger Protocol — Lance Weiler</title>
+<style>
+:root{--red:#c63b32;--paper:#f3efe5;--dark:#38282a;--sans:Arial,Helvetica,sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0;background:#000;color:var(--paper);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:.12em}
+.frame{width:min(100%,1080px);margin:18px auto;background:var(--red);position:relative;overflow:hidden}
+.frame:after{content:"";position:absolute;inset:0;pointer-events:none;z-index:50;opacity:.09;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E");mix-blend-mode:soft-light}
+.seam{position:absolute;top:0;bottom:0;left:46%;width:2.4%;background:rgba(56,40,42,.58);transform:skewX(1deg);z-index:0}
+.wrap{position:relative;z-index:2;padding:28px 38px 50px}
+nav{display:flex;justify-content:space-between;gap:24px;font-size:12px;font-weight:700;text-transform:uppercase}
+nav .right{display:flex;gap:15px;flex-wrap:wrap;justify-content:flex-end}
+.hero{min-height:880px;display:flex;flex-direction:column}
+.title{margin:65px 0 0;font-weight:700;letter-spacing:-.065em;line-height:.78;text-transform:uppercase;width:100%;max-width:100%;overflow:visible}
+.title .a,.title .b{display:block;white-space:nowrap;max-width:100%}
+.title .a{font-size:clamp(34px,9.1cqw,128px)}
+.title .b{font-size:clamp(34px,9.1cqw,128px);padding-left:0}
+.hero{container-type:inline-size}
+.hero-bottom{margin-top:auto;display:grid;grid-template-columns:44% 1fr;gap:8%;align-items:end}
+.deck{font-size:clamp(18px,2.1vw,29px);line-height:1.02;font-weight:700}
+.stats{font-size:clamp(17px,2vw,27px);line-height:1.02;font-weight:700}
+.stats span{display:grid;grid-template-columns:44px 1fr}
+.kicker{font-size:10px;text-transform:uppercase;font-weight:700;margin-bottom:7px}
+.section{padding:85px 0;border-top:1px solid rgba(243,239,229,.42)}
+.two{display:grid;grid-template-columns:44% 1fr;gap:8%}
+.num{font-size:13px;font-weight:700;text-transform:uppercase}
+.copy{font-size:clamp(20px,2.2vw,30px);line-height:1.08}
+.copy p{margin:0 0 1.05em}
+.quote{font-size:clamp(42px,6.5vw,88px);font-weight:700;letter-spacing:-.055em;line-height:.87;margin:40px 0 0;text-transform:uppercase}
+.fullimg{width:calc(100% + 76px);margin-left:-38px;display:block}
+.image-block{background:var(--paper);padding:38px;margin:0 -38px;color:#111}
+.image-block img{width:100%;height:auto;display:block}
+.caption{font-size:12px;font-weight:700;text-transform:uppercase;margin-top:10px}
+.video-block{background:var(--paper);padding:38px;margin:0 -38px;color:#111}
+.video-shell{position:relative;width:100%;aspect-ratio:16/9;background:#111;overflow:hidden}
+.video-shell iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.video-caption{font-size:12px;font-weight:700;text-transform:uppercase;margin-top:10px}
+.gallery{display:grid;grid-template-columns:1fr 1fr;gap:18px;background:var(--paper);padding:18px;margin:0 -38px}
+.gallery img{width:100%;height:100%;object-fit:cover;display:block}
+.gallery .wide{grid-column:1/-1}
+.following{padding:90px 0;border-top:1px solid rgba(243,239,229,.42)}
+.following-head{display:grid;grid-template-columns:44% 1fr;gap:8%;margin-bottom:34px}
+.following-title{font-size:clamp(34px,5vw,68px);font-weight:700;letter-spacing:-.05em;line-height:.9;text-transform:uppercase}
+.following-grid{display:flex;flex-direction:column;gap:18px;background:var(--paper);margin:0 -38px;padding:18px}
+.following-grid figure{margin:0;width:100%}
+.following-grid img{display:block;width:100%;height:auto}
+.following-grid figure:nth-child(2){margin-top:0}
+.following-grid figcaption{color:#111;font-size:10px;font-weight:700;text-transform:uppercase;line-height:1.15;margin-top:8px}
+.following-note{margin-top:34px;margin-bottom:150px;display:grid;grid-template-columns:44% 1fr;gap:8%}
+.following-note p{font-size:clamp(18px,2vw,27px);line-height:1.07;margin:0}
+.list{font-size:clamp(18px,2vw,27px);line-height:1.06;margin:0;padding-left:1.1em}
+.list li{margin:.55em 0}
+.components{display:grid;grid-template-columns:1fr 1fr;gap:18px 36px;margin-top:35px}
+.component{border-top:1px solid rgba(243,239,229,.5);padding-top:10px}
+.component b{font-size:clamp(19px,2vw,27px);line-height:1}
+.component p{font-size:15px;line-height:1.1;margin:8px 0 0}
+.questions .question-text{margin:0;display:block;border-top:1px solid rgba(243,239,229,.5);padding:18px 0;font-size:clamp(27px,4vw,56px);font-weight:700;letter-spacing:-.04em;line-height:.92}
+.questions .question-text:last-child{border-bottom:1px solid rgba(243,239,229,.5)}
+.end{padding:90px 0 25px}
+.end h2{font-size:clamp(48px,8vw,110px);letter-spacing:-.06em;line-height:.8;text-transform:uppercase;margin:0 0 40px}
+.footer{display:flex;justify-content:space-between;gap:20px;font-size:11px;font-weight:700;text-transform:uppercase}
+@media(max-width:680px){
+ body{background:var(--red)}
+ .frame{margin:0;width:100%}
+ .wrap{padding:18px}
+ nav{font-size:9px} nav .right{gap:8px}
+ .hero{min-height:100svh}
+ .title{margin-top:11vh}
+ .title .a,.title .b{font-size:clamp(30px,9.1cqw,72px);padding-left:0}
+ .hero-bottom,.two{grid-template-columns:1fr;gap:28px}
+ .hero-bottom{padding-bottom:25px}
+ .deck{font-size:20px} .stats{font-size:18px}
+ .section{padding:60px 0}
+ .copy{font-size:19px}
+ .quote{font-size:11vw}
+ .image-block{margin:0 -18px;padding:18px}
+ .video-block{margin:0 -18px;padding:18px}
+ .gallery{margin:0 -18px;padding:8px;gap:8px;grid-template-columns:1fr}
+ .gallery .wide{grid-column:auto}
+ .following-head,.following-note{grid-template-columns:1fr;gap:20px}
+ .following-note{margin-bottom:110px}
+ .following-grid{display:flex;flex-direction:column;margin:0 -18px;padding:8px;gap:8px}
+ .following-grid figure:nth-child(2){margin-top:0}
+ .components{grid-template-columns:1fr}
+ .questions .question-text{font-size:8vw}
+}
+@supports not (font-size: 1cqw){
+ .title .a,.title .b{font-size:clamp(34px,8.2vw,118px)}
+ @media(max-width:680px){.title .a,.title .b{font-size:9.4vw}}
+}
+
+/* Responsive protection for The Portraits section */
+.copy, .copy p, .list, .list li, .quote { min-width:0; max-width:100%; overflow-wrap:break-word; }
+.quote { white-space:normal; text-wrap:balance; }
+@media (max-width:900px){
+ .section.two{grid-template-columns:1fr;gap:28px}
+ .section.two .copy{width:100%;max-width:100%}
+ .section.two .quote{font-size:clamp(34px,8vw,64px);line-height:.9}
+}
+
+
+/* Never split words across lines */
+body, p, li, h1, h2, h3, h4, blockquote, figcaption, .title, .quote, .copy, .list,
+.following-title, .following-note, .deck {
+  word-break: normal !important;
+  overflow-wrap: normal !important;
+  hyphens: none !important;
+  -webkit-hyphens: none !important;
+}
+
+
+/* Balance large editorial quotations without orphan/hanging words */
+.quote {
+  text-wrap: balance !important;
+  width: 100%;
+  max-width: 100%;
+  word-break: normal !important;
+  overflow-wrap: normal !important;
+  hyphens: none !important;
+}
+@media (min-width: 901px) {
+  .quote { font-size: clamp(38px, 5.4vw, 74px) !important; line-height: .94 !important; }
+}
+@media (max-width: 900px) {
+  .quote { font-size: clamp(32px, 7.2vw, 58px) !important; line-height: .95 !important; }
+}
+@media (max-width: 520px) {
+  .quote { font-size: clamp(28px, 9vw, 46px) !important; line-height: .96 !important; }
+}
+
+
+.quote-break-wide{display:block}
+@media(max-width:700px){.quote-break-wide{display:none}}
+
+
+/* LLM statement — large, left-aligned editorial intervention */
+.llm-statement{
+  display:block;
+  width:100%;
+  max-width:100%;
+  margin:58px 0 34px;
+  font-size:clamp(38px,5.6vw,78px);
+  line-height:.91;
+  letter-spacing:-.045em;
+  font-weight:700;
+  text-align:left;
+  text-wrap:balance;
+  word-break:normal !important;
+  overflow-wrap:normal !important;
+  hyphens:none !important;
+}
+@media(max-width:700px){
+  .llm-statement{
+    margin:42px 0 28px;
+    font-size:clamp(34px,10vw,54px);
+    line-height:.93;
+  }
+}
+
+
+/* Generative subject desktop section */
+.desktop-system{
+  padding:92px 0 120px;
+  border-top:1px solid rgba(243,239,229,.42);
+}
+.desktop-system .kicker{
+  margin-bottom:54px;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.desktop-layout{
+  display:grid;
+  grid-template-columns:44% 1fr;
+  gap:8%;
+  align-items:start;
+}
+.desktop-title{
+  font-size:clamp(42px,6vw,82px);
+  line-height:.87;
+  letter-spacing:-.055em;
+  font-weight:700;
+  text-transform:uppercase;
+  text-wrap:balance;
+  word-break:normal!important;
+  overflow-wrap:normal!important;
+  hyphens:none!important;
+}
+.desktop-system .copy p{
+  font-size:clamp(18px,2vw,27px);
+  line-height:1.07;
+  margin:0 0 24px;
+}
+.desktop-emphasis{
+  margin-top:54px!important;
+  font-size:clamp(34px,4.7vw,68px)!important;
+  line-height:.91!important;
+  letter-spacing:-.045em;
+  font-weight:700;
+  text-wrap:balance;
+}
+@media(max-width:900px){
+  .desktop-layout{grid-template-columns:1fr;gap:42px}
+  .desktop-system{padding:72px 0 90px}
+}
+
+
+.generative-demo{
+  margin-top:96px;
+  padding-top:18px;
+  border-top:1px solid rgba(243,239,229,.42);
+}
+@media(max-width:700px){
+  .generative-demo{margin-top:64px}
+}
+
+
+/* Mobile-first refinements for standalone phone viewing */
+@media (max-width: 700px) {
+ html, body {width:100%;max-width:100%;overflow-x:hidden;background:var(--red)}
+ .frame {width:100%;margin:0;max-width:100%;overflow:hidden}
+ .wrap {padding-left:18px;padding-right:18px}
+ nav {align-items:flex-start;gap:12px}
+ nav .right {gap:9px 12px}
+ .hero {min-height:min(780px,92svh)}
+ .title {margin-top:56px}
+ img,iframe,video {max-width:100%}
+ .desktop-title {font-size:clamp(36px,10vw,58px)}
+ .desktop-system .copy p {line-height:1.2}
+}
+
+/* Artist biography */
+.artist-bio {border-top:1px solid currentColor;padding-top:72px;padding-bottom:90px;}
+.artist-bio .copy {max-width:780px;}
+.artist-bio .copy p {margin:0 0 1.25em;line-height:1.35;}
+@media(max-width:700px){.artist-bio{padding-top:44px;padding-bottom:56px;}}
+
+</style>
+</head>
+<body>
+<main class="frame">
+<div class="seam"></div>
+<div class="wrap">
+
+<nav>
+ <span>Lance Weiler</span>
+ 
+</nav>
+
+<header class="hero">
+ <div class="title">
+ <div class="a">DOPPELGÄNGER</div>
+ <div class="b">PROTOCOL</div>
+ </div>
+ <div class="hero-bottom">
+ <div class="deck">An immersive surveillance-based portrait series examining trust, consent, and synthetic identity in the age of machine perception.</div>
+ <div class="stats">
+ <div class="kicker">Participation / Study</div>
+ <span><b>36</b> PEOPLE RESPONDED</span>
+ <span><b>23</b> INTERACTED WITH ARTIST BOT</span>
+ <span><b>8</b> COMMITTED TO BE STALKED</span>
+ <span><b>2</b> PROVIDED ACCESS TO THEIR APARTMENTS</span>
+ </div>
+ </div>
+</header>
+
+<section class="section two">
+ <div><div class="num">01 / Invitation</div></div>
+ <div class="copy">
+ <p>Doppelgänger Protocol unfolds across reality and fiction, participation and performance, documentation and hallucination.</p>
+ <p>It begins with a Craigslist ad.</p>
+ <div class="quote">“Seeking individuals<br class="quote-break-wide"> willing to be watched.”</div>
+ </div>
+</section>
+
+<section class="image-block">
+ <img src="assets/artwork-01.jpg" alt="Doppelgänger Protocol mixed-media portraits">
+</section>
+
+<section class="video-block">
+ 
+</section>
+
+
+
+
+<section class="section two">
+ <div><div class="num">02 / Surveillance Rituals</div></div>
+ <div class="copy">
+ <p>Those who opted in agreed to a disturbing but consensual set of conditions. Over a seven-day period, the artist observed each subject through a series of escalating surveillance rituals—both digital and physical.</p>
+ <p>They were followed in public. Photographed from a distance. Their online presence was scraped. Their phones were tracked.</p>
+ <p>At night, their homes were entered—doors left unlocked by mutual agreement. The artist recorded video and ambient audio as they slept. Drawers were opened. Items were handled, logged, and photographed.</p>
+ <p>The line between participant and subject, observer and intruder, was deliberately blurred.</p>
+ </div>
+</section>
+
+<section class="following">
+ <div class="following-head">
+ <div class="num">03 / Following</div>
+ <div class="following-title">The subject moves.<br>The system follows.</div>
+ </div>
+ <div class="following-grid">
+ <figure>
+ <img src="assets/artwork-02.png" alt="Night surveillance image of a subject's residence with data and text overlays">
+ </figure>
+ <figure>
+ <img src="assets/artwork-03.png" alt="Night surveillance image of a vehicle and walking figure with data and text overlays">
+ </figure>
+ </div>
+ <div class="following-note">
+ <div class="kicker">Field documentation</div>
+ <p>Surveillance images accumulate alongside location traces, observations, machine-generated interpretations, and fragments of dialogue. The record becomes increasingly difficult to separate from the portrait it is constructing.</p>
+ </div>
+</section>
+
+<section class="image-block">
+ <img src="assets/artwork-04.jpg" alt="Louis Spirals portrait">
+</section>
+
+<section class="section two">
+ <div><div class="num">04 / Artist Bot</div></div>
+ <div class="copy">
+ <p>Participants also engaged in asynchronous dialogue with an AI-powered “artist bot”—a generative conversational agent designed to extract vulnerability, secrets, and emotional detail.</p>
+ <p>These interactions added another layer to each subject’s profile: thoughts, confessions, dreams, fragments of self freely offered to a system they didn’t control.</p>
+<p><strong class="llm-statement">LLMs operate throughout Doppelgänger Protocol as both conversational agents and interpretive systems.</strong> Participant conversations, surveillance observations, location traces, images, and fragments of personal information are passed through LLM-driven processes that classify, infer, speculate, and generate additional material about each subject.</p>
+<p>The models are deliberately allowed to move between evidence and invention. They produce behavioral interpretations, emotional assessments, synthetic memories, and seemingly authoritative observations that become part of the subject’s evolving portrait.</p>
+<p>The resulting archive mixes what was observed, what was disclosed, what was inferred, and what was generated—without providing the viewer with a reliable way to distinguish between them.</p>
+ </div>
+</section>
+
+<section class="gallery">
+ <img src="assets/artwork-05.jpg" alt="Doppelgänger Protocol collage">
+ <img src="assets/artwork-06.jpg" alt="Doppelgänger Protocol portrait">
+ <img class="wide" src="assets/artwork-07.jpg" alt="Doppelgänger Protocol layered portrait">
+</section>
+
+<section class="section two">
+ <div><div class="num">05 / The Portraits</div></div>
+ <div class="copy">
+ <p>The resulting artworks are complex, glitched portraits:</p>
+ <ul class="list">
+ <li>Built from surveillance footage, found objects, and speculative data.</li>
+ <li>Constructed as layered narrative collages blending analog and digital materials.</li>
+ <li>Accompanied by “case files” filled with location logs, audio transcriptions, AI-generated diary entries, and algorithmic emotional scores.</li>
+ </ul>
+ <div class="quote">Some elements are observed. Others are disclosed, inferred, or generated. The viewer is never told which.</div>
+ </div>
+</section>
+
+
+<div class="image-bleed">
+ <figure style="margin:0">
+ <img src="assets/artwork-08.jpg" alt="Doppelgänger Protocol mixed-media portrait with layered surveillance imagery, machine text, and blue-black print elements" style="display:block;width:100%;height:auto">
+ </figure>
+</div>
+
+<section class="section" aria-label="Doppelgänger Desktops"><div class="num">06 / Doppelgänger Desktops</div></section>
+<div class="generative-demo">
+<div class="video-shell">
+ <iframe
+ src="https://player.vimeo.com/video/1224986404?title=0&byline=0&portrait=0"
+ title="Doppelgänger Protocol video"
+ allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+ allowfullscreen>
+ </iframe>
+ </div>
+ <div class="video-caption">Generative Forensic Narrative Collage — interactive subject desktop</div>
+<section class="section desktop-system">
+  <div class="kicker">GENERATIVE FORENSIC NARRATIVE COLLAGE</div>
+  <div class="desktop-layout">
+    <div class="desktop-title">THE SUBJECT<br>BECOMES A<br>DESKTOP.</div>
+    <div class="copy">
+      <p>Each subject in <em>Doppelgänger Protocol</em> is reconstructed as an interactive desktop populated by agentic AI. Files, folders, images, messages, surveillance traces, system artifacts, and fragments of personal information become forensic elements within an evolving narrative collage.</p>
+      <p>Visitors can explore the desktop directly—opening files, examining evidence, following connections, and uncovering material embedded throughout the interface. Every interaction becomes part of the system. What a visitor opens, ignores, follows, or returns to can alter what appears next.</p>
+      <p>The desktop is therefore never a fixed archive. Agentic AI reorganizes, generates, reveals, and withholds material in response to visitor behavior, producing a shifting portrait of the subject. The interface functions simultaneously as evidence locker, portrait, narrative space, and generative system.</p>
+      <p class="desktop-emphasis">A generative forensic narrative collage that changes as it is investigated.</p>
+    </div>
+  </div>
+</section>
+</div>
+
+<section class="section">
+ <div class="num">07 / Key Components</div>
+ <div class="components">
+ <div class="component"><b>Mixed-media portraits</b><p>10–12 pieces combining archival print, silkscreen, resin, thermal transfer, and data overlays.</p></div>
+ <div class="component"><b>Surveillance case files</b><p>Field notes, observation logs, drawer inventories, interaction transcripts, and behavioral tags.</p></div>
+ <div class="component"><b>Video + audio</b><p>Projected surveillance clips, sleep recordings, and voice simulations.</p></div>
+ <div class="component"><b>Rules of participation</b><p>The collaged Craigslist ad and original agreement that initiated the performance.</p></div>
+ <div class="component"><b>LLM interpretive layer</b><p>LLMs process participant conversations, surveillance observations, location traces, images, and personal information to generate classifications, behavioral inferences, synthetic memories, and speculative interpretations.</p></div>
+ <div class="component"><b>Agentic AI desktop</b><p>Agentic AI populates and continuously reorganizes each subject’s interactive desktop—revealing, withholding, generating, and connecting forensic elements in response to visitor behavior.</p></div>
+ </div>
+</section>
+
+<section class="section questions">
+ <div class="num">08 / Questions</div>
+ <p class="question-text">What does true consent look like in a world defined by ambient surveillance and behavioral tracking?</p>
+ <p class="question-text">Who owns the story of your body, your metadata, your memories?</p>
+ <p class="question-text">If your portrait is built from how others watch you—can it ever be accurate?</p>
+</section>
+
+<section class="image-block">
+ <img src="assets/artwork-09.png" alt="Doppelgänger Protocol surveillance collage installation view">
+ <div class="caption">Doppelgänger Protocol — installation view</div>
+</section>
+
+<section class="end">
+ <h2>Criminal.<br>Intimate.<br>Hauntingly<br>familiar.</h2>
+ <div class="two">
+ <div class="num">Exhibition / Installation</div>
+ <div class="copy">
+ <p>Doppelgänger Protocol is modular and can adapt to a range of exhibition contexts—from a selection of individual works within a group show to a larger installation, multi-room presentation, or complete solo exhibition. It invites audiences into a parafictional research archive that feels criminal, intimate, and hauntingly familiar.</p>
+ <p>Equal parts performance, portraiture, and speculative system leak, the project blurs lines between documentary and fiction, truth and distortion, art and intrusion.</p>
+ </div>
+ </div>
+</section>
+
+<section class="section artist-bio" aria-labelledby="artist-bio-heading">
+ <div class="num" id="artist-bio-heading">Artist Bio</div>
+ <div class="copy">
+  <p>Lance Weiler is an artist whose practice spans immersive installation, participatory performance, cinema, and emerging technologies. For over 20 years, his work has explored new forms of storytelling, investigating the relationships between technology, human agency, and collective experience.</p>
+  <p>His work has been presented at Lincoln Center, the Portland Art Museum, Museum of the Moving Image, Art Basel, ArtYard, MAD Arts, and RYAN LEE Gallery, as well as film festivals including Sundance, Tribeca, the New York Film Festival, and Cannes. His installation of <em>Where There's Smoke</em> on the High Line was named one of the best digital artworks of 2025 by ARTnews.</p>
+  <p>Weiler is a Professor of Professional Practice at Columbia University School of the Arts, where he is a founding member and director of the Columbia Digital Storytelling Lab.</p>
+ </div>
+</section>
+
+<footer class="footer" style="justify-content:center;text-align:center;">
+ 
+ <span>Doppelgänger Protocol / Lance Weiler</span>
+ 
+</footer>
+
+</div>
+</main>
+</body>
+</html>
